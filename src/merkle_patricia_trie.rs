@@ -76,7 +76,7 @@ impl MerklePatriciaTrie {
         // TODO
     }
 
-    fn delete(&mut self, key: &str) {
+    fn delete(&mut self, key: &str) -> String {
         // TODO
     }
 
