@@ -136,6 +136,62 @@ fn test_mpt_ext() {
     assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/ext_133.txt"));
     mpt.delete("bc");
     assert_eq!(mpt.order_nodes(), inserted_trie);
+
+    mpt = MerklePatriciaTrie::new();
+    mpt.insert("aaa", "apple");
+    mpt.insert("aap", "banana");
+    inserted_trie = mpt.order_nodes();
+    mpt.insert("ab", "new");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/ext_311.txt"));
+    mpt.delete("c");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/ext_311.txt"));
+    mpt.delete("ab");
+    assert_eq!(mpt.order_nodes(), inserted_trie);
+
+    mpt = MerklePatriciaTrie::new();
+    mpt.insert("aaa", "apple");
+    mpt.insert("aap", "banana");
+    inserted_trie = mpt.order_nodes();
+    mpt.insert("abb", "new");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/ext_313.txt"));
+    mpt.delete("c");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/ext_313.txt"));
+    mpt.delete("abb");
+    assert_eq!(mpt.order_nodes(), inserted_trie);
+
+    mpt = MerklePatriciaTrie::new();
+    mpt.insert("p", "apple");
+    mpt.insert("aaaaa", "banana");
+    mpt.insert("aaaap", "orange");
+    inserted_trie = mpt.order_nodes();
+    mpt.insert("aa", "new");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/ext_340.txt"));
+    mpt.delete("c");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/ext_340.txt"));
+    mpt.delete("aa");
+    assert_eq!(mpt.order_nodes(), inserted_trie);
+
+    mpt = MerklePatriciaTrie::new();
+    mpt.insert("aaaa", "apple");
+    mpt.insert("aaap", "banana");
+    inserted_trie = mpt.order_nodes();
+    mpt.insert("ab", "new");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/ext_331.txt"));
+    mpt.delete("c");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/ext_331.txt"));
+    mpt.delete("ab");
+    assert_eq!(mpt.order_nodes(), inserted_trie);
+
+    mpt = MerklePatriciaTrie::new();
+    mpt.insert("aaaa", "apple");
+    mpt.insert("aaap", "banana");
+    inserted_trie = mpt.order_nodes();
+    mpt.insert("abb", "new");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/ext_333.txt"));
+    mpt.delete("c");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/ext_333.txt"));
+    mpt.delete("abb");
+    assert_eq!(mpt.order_nodes(), inserted_trie);
 }
 
 #[test]
@@ -277,6 +333,57 @@ fn test_mpt_leaf() {
     assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/leaf_133.txt"));
     mpt.delete("bp");
     assert_eq!(mpt.order_nodes(), inserted_trie);
+
+    mpt = MerklePatriciaTrie::new();
+    mpt.insert("app", "banana");
+    inserted_trie = mpt.order_nodes();
+    mpt.insert("aab", "apple");
+    mpt.insert("aab", "new");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/leaf_300.txt"));
+    mpt.delete("c");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/leaf_300.txt"));
+    mpt.delete("aab");
+    assert_eq!(mpt.order_nodes(), inserted_trie);
+
+    mpt = MerklePatriciaTrie::new();
+    mpt.insert("ap", "apple");
+    inserted_trie = mpt.order_nodes();
+    mpt.insert("aq", "new");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/leaf_311.txt"));
+    mpt.delete("c");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/leaf_311.txt"));
+    mpt.delete("aq");
+    assert_eq!(mpt.order_nodes(), inserted_trie);
+
+    mpt = MerklePatriciaTrie::new();
+    mpt.insert("ap", "apple");
+    inserted_trie = mpt.order_nodes();
+    mpt.insert("aqa", "new");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/leaf_313.txt"));
+    mpt.delete("c");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/leaf_313.txt"));
+    mpt.delete("aqa");
+    assert_eq!(mpt.order_nodes(), inserted_trie);
+
+    mpt = MerklePatriciaTrie::new();
+    mpt.insert("aab", "apple");
+    inserted_trie = mpt.order_nodes();
+    mpt.insert("ab", "new");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/leaf_331.txt"));
+    mpt.delete("c");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/leaf_331.txt"));
+    mpt.delete("ab");
+    assert_eq!(mpt.order_nodes(), inserted_trie);
+
+    mpt = MerklePatriciaTrie::new();
+    mpt.insert("aab", "apple");
+    inserted_trie = mpt.order_nodes();
+    mpt.insert("aba", "new");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/leaf_333.txt"));
+    mpt.delete("c");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/leaf_333.txt"));
+    mpt.delete("aba");
+    assert_eq!(mpt.order_nodes(), inserted_trie);
 }
 
 #[test]
@@ -367,6 +474,15 @@ fn test_mpt_leaf_basic() {
     mpt = MerklePatriciaTrie::new();
     mpt.insert("a", "apple");
     assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/basic_2.txt"));
+
+    mpt = MerklePatriciaTrie::new();
+    mpt.insert("aab", "apple");
+    mpt.insert("app", "banana");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/basic_3.txt"));
+
+    mpt = MerklePatriciaTrie::new();
+    mpt.insert("ap", "apple");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/basic_4.txt"));
 }
 
 #[test]
@@ -396,6 +512,24 @@ fn test_mpt_ext_basic() {
     mpt.insert("aa", "banana");
     mpt.insert("ap", "orange");
     assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/ext_basic_5.txt"));
+
+    mpt = MerklePatriciaTrie::new();
+    mpt.insert("p", "apple");
+    mpt.insert("aaa", "banana");
+    mpt.insert("aap", "orange");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/ext_basic_6.txt"));
+
+    mpt = MerklePatriciaTrie::new();
+    mpt.insert("p", "apple");
+    mpt.insert("aaaa", "banana");
+    mpt.insert("aaap", "orange");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/ext_basic_7.txt"));
+
+    mpt = MerklePatriciaTrie::new();
+    mpt.insert("p", "apple");
+    mpt.insert("aaaaa", "banana");
+    mpt.insert("aaaap", "orange");
+    assert_eq!(mpt.order_nodes(), read_file("src/mpt_tests/ext_basic_8.txt"));
 }
 
 fn read_file(path: &str) -> String {
